@@ -8,3 +8,13 @@ export const getTopics = async () => {
   const { data } = await newsApi.get('/topics');
   return data.topics;
 };
+
+export const getArticles = async (topic) => {
+  const { data } = await newsApi.get('/articles', {
+    params: {
+      topic: topic
+    }
+  });
+
+  return data.articles;
+};

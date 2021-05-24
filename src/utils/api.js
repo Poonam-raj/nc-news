@@ -15,6 +15,15 @@ export const getArticles = async (topic) => {
       topic: topic
     }
   });
-
   return data.articles;
+};
+
+export const getArticleByID = async (articleID) => {
+  const { data } = await newsApi.get(`/articles/${articleID}`);
+  return data.article;
+};
+
+export const getCommentsByID = async (articleID) => {
+  const { data } = await newsApi.get(`articles/${articleID}/comments`);
+  return data.comments;
 };

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getArticles } from '../utils/api';
 import { ListOrder } from './ListOrder';
+import { Link } from 'react-router-dom';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -16,7 +17,10 @@ const ArticlesList = () => {
 
   return (
     <main>
-      <h2 className='ArticlesList__header'>All Articles</h2>
+      <h2 className='ArticlesList__header'>
+        {topic ? `${topic} Articles` : 'All Articles'}
+      </h2>
+
       <ListOrder />
       <div>
         {articles.map((article) => {
@@ -27,7 +31,9 @@ const ArticlesList = () => {
                 <p>{article.created_at}</p>
               </div>
 
-              <h3>{article.title}</h3>
+              <Link to={`/${article.author}/${article.article_id}`}>
+                <h3>{article.title}</h3>
+              </Link>
               <div className='ArticlesList__article__stats'>
                 <p>{article.votes} votes 💟 </p>
                 <p>{article.comment_count} comments 💬 </p>

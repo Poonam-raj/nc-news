@@ -5,6 +5,14 @@
 .Header {
   background-color: #138188;
 }
+.Header__title {
+  text-decoration: none;
+  color: inherit;
+}
+
+.Header__title:hover {
+  color: rgb(157, 219, 176);
+}
 .Nav {
   background-color: #adebe0;
   display: flex;

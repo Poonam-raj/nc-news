@@ -7,8 +7,40 @@
 }
 .Nav {
   background-color: #adebe0;
+  display: flex;
+  justify-content: space-around;
 }
 
-h1 {
+h1,
+ul {
   margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+  padding-bottom: 10px;
+}
+
+.ArticlesList__article {
+  background-color: #dffbe1;
+  margin: 10px 0px 10px 0px;
+}
+
+.ArticlesList__options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ArticlesList__sort-by {
+  margin: 0;
+}
+.ArticlesList__options__header {
+  margin: 5px;
+}
+
+.ArticlesList__article__details,
+.ArticlesList__article__stats {
+  display: flex;
+  justify-content: space-around;
 }

@@ -1,5 +1,9 @@
 const Article = () => {
-  return <h2>Article Here</h2>;
+  return (
+    <main>
+      <h2>articleee</h2>
+    </main>
+  );
 };
 
 export default Article;

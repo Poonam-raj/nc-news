@@ -11,14 +11,14 @@ function App() {
       <Header />
       <Nav />
       <Switch>
-        <Route exact path='/:author_id/:article_id'>
-          <Article />
+        <Route exact path='/topics/:topic'>
+          <ArticlesList />
         </Route>
         <Route exact path='/'>
           <ArticlesList />
-        </Route>
-        <Route exact path='/topics/:topic'>
-          <ArticlesList />
+        </Route>{' '}
+        <Route exact path='/:author_id/:article_id'>
+          <Article />
         </Route>
       </Switch>
     </div>

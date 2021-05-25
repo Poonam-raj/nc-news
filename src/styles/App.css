@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+
+  font-family: 'Sahitya', serif;
 }
 
 .Header {
@@ -9,6 +11,7 @@
 .Header__title {
   text-decoration: none;
   color: inherit;
+  font-family: 'Bevan', cursive;
 }
 
 .Header__subheader {
@@ -38,11 +41,13 @@ li {
 
 .ArticlesList__header {
   margin: 10px;
+  font-family: 'Bevan', cursive;
 }
 
-.ArticlesList__article {
+.ArticlesList__article,
+.Article__container {
   background-color: #dffbe1;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 25px 10px 25px;
 }
 
 .ArticlesList__options {
@@ -53,7 +58,8 @@ li {
 .ArticlesList__sort-by {
   margin: 0;
 }
-.ArticlesList__options__header {
+.ArticlesList__options__header,
+.ArticlesList__article__details p {
   margin: 5px;
 }
 
@@ -61,4 +67,84 @@ li {
 .ArticlesList__article__stats {
   display: flex;
   justify-content: space-around;
+}
+
+.ArticlesList__article__link h3 {
+  font-family: 'Bevan', cursive;
+  font-size: 20px;
+  margin: 8px 20px 8px 20px;
+  text-align: left;
+}
+.ArticlesList__article__link {
+  color: inherit;
+}
+
+.ArticlesList__article__stats p {
+  margin: 5px 0px 5px 0px;
+}
+
+.ArticlesList__article__details {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.Article__topics {
+  text-align: left;
+
+  font-size: 14px;
+}
+
+.Article__container h2 {
+  font-family: 'Bevan', cursive;
+  font-size: 30px;
+
+  text-align: left;
+}
+.Article__details,
+.Article__stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0px 20px 0px 20px;
+  gap: 40px;
+}
+
+.Article__details p,
+.Article__stats p {
+  /* max-width: 150px; */
+  /* flex-wrap: wrap; */
+  font-size: 14px;
+  margin: 0px;
+}
+
+.Article__body {
+  background-color: rgb(173, 173, 173);
+}
+
+.Comments__form {
+  background-color: rgb(173, 173, 173);
+}
+.Article__margin {
+  margin: 8px 20px 8px 20px;
+}
+
+.Comments {
+  background-color: rgb(173, 173, 173);
+  display: flex;
+  padding: 0px 0px 10px 0px;
+  justify-content: space-between;
+}
+
+.Comments__body {
+  background-color: white;
+  margin: 8px 10px 8px 10px;
+  width: 180px;
+  padding: 10px;
+}
+
+.Comments__author,
+.Comments__votes {
+  font-size: 14px;
+  margin: 15px;
+  text-align: left;
 }

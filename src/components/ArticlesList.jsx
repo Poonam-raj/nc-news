@@ -25,7 +25,6 @@ const ArticlesList = ({ queryString, setQueryString }) => {
   //   });
   // }
   useEffect(() => {
-    console.log(queryString);
     getArticles(queryString).then((response) => {
       setArticles(response);
       setIsLoading(false);
@@ -46,7 +45,10 @@ const ArticlesList = ({ queryString, setQueryString }) => {
                 <p>{article.created_at}</p>
               </div>
 
-              <Link to={`/${article.author}/${article.article_id}`}>
+              <Link
+                to={`/${article.author}/${article.article_id}`}
+                className='ArticlesList__article__link'
+              >
                 <h3>{article.title}</h3>
               </Link>
               <div className='ArticlesList__article__stats'>

@@ -5,24 +5,38 @@ import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
 import { capitaliseString } from '../utils/util';
 
-const ArticlesList = () => {
+const ArticlesList = ({ queryString, setQueryString }) => {
   const [articles, setArticles] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
-  const capitalisedTopic = capitaliseString(topic);
 
+  const checkTopic = () => {
+    if (topic) {
+      let capitalisedTopic = capitaliseString(topic);
+      return `${capitalisedTopic} Articles`;
+    } else return 'All Articles';
+  };
+
+  // if (topic) {
+  //   setQueryString((currQueryString) => {
+  //     const newQuery = { ...currQueryString };
+  //     newQuery.topic = topic;
+  //     return newQuery;
+  //   });
+  // }
   useEffect(() => {
-    getArticles(topic).then((response) => {
+    console.log(queryString);
+    getArticles(queryString).then((response) => {
       setArticles(response);
+      setIsLoading(false);
     });
-  }, [topic]);
+  }, [queryString]);
 
+  if (isLoading) return <p>Loading...</p>;
   return (
     <main>
-      <h2 className='ArticlesList__header'>
-        {topic ? `${capitalisedTopic} Articles` : 'All Articles'}
-      </h2>
-      <ListOrder />
+      <h2 className='ArticlesList__header'>{checkTopic()}</h2>
+      <ListOrder setQueryString={setQueryString} />
       <div>
         {articles.map((article) => {
           return (

@@ -41,7 +41,7 @@ votes: 0
         <p>{article.comment_count} comments</p>
       </div>
       {/* need a votes button here */}
-      <p className='Article__body'>{article.body}</p>
+      <article className='Article__body'>{article.body}</article>
       <hr />
       <h2>Comments ({article.comment_count})</h2>
       <Comments article_id={article_id} />

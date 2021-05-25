@@ -3,11 +3,13 @@ import { useParams } from 'react-router';
 import { getArticles } from '../utils/api';
 import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
+import { capitaliseString } from '../utils/util';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
 
   const { topic } = useParams();
+  const capitalisedTopic = capitaliseString(topic);
 
   useEffect(() => {
     getArticles(topic).then((response) => {
@@ -18,9 +20,8 @@ const ArticlesList = () => {
   return (
     <main>
       <h2 className='ArticlesList__header'>
-        {topic ? `${topic} Articles` : 'All Articles'}
+        {topic ? `${capitalisedTopic} Articles` : 'All Articles'}
       </h2>
-
       <ListOrder />
       <div>
         {articles.map((article) => {

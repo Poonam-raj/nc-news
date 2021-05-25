@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getTopics } from '../utils/api';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { capitaliseSlug } from '../utils/util';
+import { capitaliseString } from '../utils/util';
 
 const Nav = () => {
   const [topics, setTopics] = useState([]);
@@ -19,10 +19,12 @@ const Nav = () => {
       <Link to={'/'}>Home</Link>
       <DropdownButton id='dropdown-basic-button' title='Topics'>
         {topics.map((topic, i) => {
-          capitaliseSlug(topic);
+          const capitalisedSlug = capitaliseString(topic.slug);
           return (
             <Link key={topic.slug} to={`/topics/${topic.slug}`}>
-              <Dropdown.Item href={`#/action-${i}`}>{topic.slug}</Dropdown.Item>
+              <Dropdown.Item href={`#/action-${i}`}>
+                {capitalisedSlug}
+              </Dropdown.Item>
             </Link>
           );
         })}

@@ -1,5 +1,4 @@
-export const capitaliseSlug = (topic) => {
-  const capitalSlug =
-    topic['slug'].charAt(0).toUpperCase() + topic['slug'].slice(1);
-  topic.slug = capitalSlug;
+export const capitaliseString = (string) => {
+  const capitalString = string.charAt(0).toUpperCase() + string.slice(1);
+  return capitalString;
 };

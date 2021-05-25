@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getTopics } from '../utils/api';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { capitaliseString } from '../utils/util';
+import { capitaliseString, setQuery } from '../utils/util';
 
 const Nav = ({ setQueryString }) => {
   const [topics, setTopics] = useState([]);
@@ -30,11 +30,7 @@ const Nav = ({ setQueryString }) => {
               <Link to={`/topics/${topic.slug}`} key={topic.slug}>
                 <li
                   onClick={() => {
-                    setQueryString((currQueryString) => {
-                      const newQuery = { ...currQueryString };
-                      newQuery.topic = topic.slug;
-                      return newQuery;
-                    });
+                    setQuery(setQueryString, 'topic', topic.slug);
                   }}
                 >
                   {capitalisedSlug}

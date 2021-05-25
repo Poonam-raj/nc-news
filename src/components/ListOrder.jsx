@@ -1,4 +1,5 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { setQuery } from '../utils/util';
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import { Link } from 'react-router-dom';
 
@@ -11,39 +12,23 @@ export const ListOrder = ({ setQueryString }) => {
         className='ArticlesList__sort-by'
       >
         <ul>
-          {/* when clicked we want to add a sortBy param into */}
           <li
             onClick={() => {
-              setQueryString((currQueryString) => {
-                const newQuery = { ...currQueryString };
-                newQuery.sort_by = 'created_at';
-
-                return newQuery;
-              });
+              setQuery(setQueryString, 'sort_by', 'created_at');
             }}
           >
             Date Created
           </li>
           <li
             onClick={() => {
-              setQueryString((currQueryString) => {
-                const newQuery = { ...currQueryString };
-                newQuery.sort_by = 'comment_count';
-
-                return newQuery;
-              });
+              setQuery(setQueryString, 'sort_by', 'comment_count');
             }}
           >
             Comment Count
           </li>
           <li
             onClick={() => {
-              setQueryString((currQueryString) => {
-                const newQuery = { ...currQueryString };
-                newQuery.sort_by = 'votes';
-
-                return newQuery;
-              });
+              setQuery(setQueryString, 'sort_by', 'votes');
             }}
           >
             Votes
@@ -58,24 +43,14 @@ export const ListOrder = ({ setQueryString }) => {
         <ul>
           <li
             onClick={() => {
-              setQueryString((currQueryString) => {
-                const newQuery = { ...currQueryString };
-                newQuery.order = 'asc';
-
-                return newQuery;
-              });
+              setQuery(setQueryString, 'order', 'asc');
             }}
           >
             Ascending
           </li>
           <li
             onClick={() => {
-              setQueryString((currQueryString) => {
-                const newQuery = { ...currQueryString };
-                newQuery.order = 'desc';
-
-                return newQuery;
-              });
+              setQuery(setQueryString, 'order', 'desc');
             }}
           >
             Descending

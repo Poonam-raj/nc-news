@@ -6,7 +6,7 @@ const Header = () => {
       <Link to='/' className='Header__title'>
         <h1>Northcoders News</h1>
       </Link>
-      <p>Social news and CRUDdy content</p>
+      <p className='Header__subheader'>Social news and CRUD-dy content</p>
     </header>
   );
 };

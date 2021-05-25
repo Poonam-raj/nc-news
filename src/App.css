@@ -4,10 +4,15 @@
 
 .Header {
   background-color: #138188;
+  padding-bottom: 5px;
 }
 .Header__title {
   text-decoration: none;
   color: inherit;
+}
+
+.Header__subheader {
+  margin: 5px;
 }
 
 .Header__title:hover {
@@ -17,6 +22,7 @@
   background-color: #adebe0;
   display: flex;
   justify-content: space-around;
+  padding: 5px;
 }
 
 h1,
@@ -28,6 +34,10 @@ ul {
 li {
   list-style-type: none;
   padding-bottom: 10px;
+}
+
+.ArticlesList__header {
+  margin: 10px;
 }
 
 .ArticlesList__article {

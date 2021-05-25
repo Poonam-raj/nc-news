@@ -4,6 +4,7 @@ import Article from './components/Article';
 import ArticlesList from './components/ArticlesList';
 import Nav from './components/Nav';
 import { Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

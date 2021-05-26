@@ -1,20 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getArticleByID } from '../utils/api';
+import { getArticleByID, patchArticleVotes } from '../utils/api';
 import Comments from './Comments';
-
-/*
-  TODO
-
-  - voting on article
-
-  
-*/
 
 const Article = () => {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     getArticleByID(article_id)
@@ -22,8 +15,24 @@ const Article = () => {
         setArticle(response);
         setIsLoading(false);
       })
+
       .catch((err) => console.log(err));
-  }, [article_id]);
+
+    setCount(article.votes);
+  }, [article_id, article.votes]);
+
+  const incrementCount = (increment) => {
+    setCount((currCount) => {
+      return currCount + increment;
+    });
+    patchArticleVotes(article_id, { inc_votes: increment })
+      .then((response) => {
+        setArticle(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   if (isLoading) return <p>Loading...</p>;
   return (
@@ -39,7 +48,22 @@ const Article = () => {
           <p>{article.votes} votes</p>
           <p>{article.comment_count} comments</p>
         </div>
-        {/* need a votes button here */}
+        {/* VOTE BUTTONS */}
+        <button
+          onClick={() => {
+            incrementCount(1);
+          }}
+        >
+          ⬆{' '}
+        </button>
+        <p>{count}</p>
+        <button
+          onClick={() => {
+            incrementCount(-1);
+          }}
+        >
+          ⬇{' '}
+        </button>
         <article className='Article__body'>{article.body}</article>
         <hr />
         <h2>Comments ({article.comment_count})</h2>

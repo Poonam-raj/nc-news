@@ -1,6 +1,13 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { setQuery } from '../utils/util';
 
+/*
+  TODO
+
+  - a way of knowing if a order has been selected - visual indication of active sorting order
+    - dropdowns need to close when clicked
+*/
+
 export const ListOrder = ({ setQueryString }) => {
   const sortBySlug = ['created_at', 'comment_count', 'votes'];
   const sortByName = ['Date Created', 'Comment Count', 'Votes'];

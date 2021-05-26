@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getTopics } from '../utils/api';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { capitaliseString, setQuery } from '../utils/util';
+import { UserContext } from '../contexts/User';
+/*
+  TODO
+
+  - way of indicating if a topic or page is selected
+  
+*/
 
 const Nav = ({ setQueryString }) => {
   const [topics, setTopics] = useState([]);
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     getTopics()
       .then((response) => {
@@ -42,6 +51,7 @@ const Nav = ({ setQueryString }) => {
           })}
         </ul>
       </DropdownButton>
+      <p>{user}</p>
     </nav>
   );
 };

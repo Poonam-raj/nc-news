@@ -1,8 +1,18 @@
-import { useEffect, useState } from 'react';
-import { getCommentsByID } from '../utils/api';
+import { useContext, useEffect, useState } from 'react';
+import { getCommentsByID, postComment } from '../utils/api';
+import { UserContext } from '../contexts/User';
+/*
+  TODO
+
+ - voting on comments
+
+*/
 
 const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     getCommentsByID(article_id)
@@ -10,11 +20,39 @@ const Comments = ({ article_id }) => {
         setComments(response);
       })
       .catch((err) => console.log(err));
-  }, [article_id]);
+    return () => {
+      setIsLoading(false);
+    };
+  }, [article_id, comments]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newComm = { username: user, body: newComment };
+    //POST only works when it's an existing user
+    postComment(article_id, newComm)
+      .then(() => {
+        console.log('comment added');
+      })
+      .catch((err) => console.log(err));
+    setNewComment('');
+  };
+
+  if (isLoading) return <p>Loading...</p>;
   return (
     <section>
-      <p className='Comments__form'>form</p>
+      <form className='Comments__form' onSubmit={handleSubmit}>
+        <label>
+          Submit a comment as {user}
+          <input
+            type='text'
+            value={newComment}
+            onChange={(e) => {
+              setNewComment(e.target.value);
+            }}
+          />
+        </label>
+        <button type='submit'>Post Comment</button>
+      </form>
       <ul>
         {comments.map((comment) => {
           return (

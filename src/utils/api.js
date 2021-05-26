@@ -26,6 +26,14 @@ export const getArticleByID = async (articleID) => {
 };
 
 export const getCommentsByID = async (articleID) => {
-  const { data } = await newsApi.get(`articles/${articleID}/comments`);
+  const { data } = await newsApi.get(`/articles/${articleID}/comments`);
   return data.comments;
+};
+
+export const postComment = async (articleID, newComment) => {
+  const { data } = await axios.post(
+    `https://poonam-nc-news.herokuapp.com/api/articles/${articleID}/comments`,
+    newComment
+  );
+  return data.comment;
 };

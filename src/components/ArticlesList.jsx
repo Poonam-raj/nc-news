@@ -5,6 +5,13 @@ import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
 import { capitaliseString } from '../utils/util';
 
+/*
+  TODO
+
+  - keep topic filter upon refresh
+  
+*/
+
 const ArticlesList = ({ queryString, setQueryString }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

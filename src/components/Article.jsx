@@ -3,19 +3,29 @@ import { useParams } from 'react-router';
 import { getArticleByID } from '../utils/api';
 import Comments from './Comments';
 
+/*
+  TODO
+
+  - voting on article
+
+  
+*/
+
 const Article = () => {
   const { article_id } = useParams();
-
+  const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
 
   useEffect(() => {
     getArticleByID(article_id)
       .then((response) => {
         setArticle(response);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, [article_id]);
 
+  if (isLoading) return <p>Loading...</p>;
   return (
     <main className='Article__container'>
       <div className='Article__margin'>

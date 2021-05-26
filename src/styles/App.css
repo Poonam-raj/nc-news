@@ -8,7 +8,8 @@
   background-color: #138188;
   padding-bottom: 5px;
 }
-.Header__title {
+.Header__title,
+.Header__title:hover {
   text-decoration: none;
   color: inherit;
   font-family: 'Bevan', cursive;
@@ -18,9 +19,6 @@
   margin: 5px;
 }
 
-.Header__title:hover {
-  color: rgb(157, 219, 176);
-}
 .Nav {
   background-color: #adebe0;
   display: flex;

@@ -25,10 +25,12 @@ const ArticlesList = ({ queryString, setQueryString }) => {
   //   });
   // }
   useEffect(() => {
-    getArticles(queryString).then((response) => {
-      setArticles(response);
-      setIsLoading(false);
-    });
+    getArticles(queryString)
+      .then((response) => {
+        setArticles(response);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err));
   }, [queryString]);
 
   if (isLoading) return <p>Loading...</p>;

@@ -9,9 +9,11 @@ const Article = () => {
   const [article, setArticle] = useState([]);
 
   useEffect(() => {
-    getArticleByID(article_id).then((response) => {
-      setArticle(response);
-    });
+    getArticleByID(article_id)
+      .then((response) => {
+        setArticle(response);
+      })
+      .catch((err) => console.log(err));
   }, [article_id]);
 
   return (

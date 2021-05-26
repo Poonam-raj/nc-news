@@ -5,9 +5,11 @@ const Comments = ({ article_id }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    getCommentsByID(article_id).then((response) => {
-      setComments(response);
-    });
+    getCommentsByID(article_id)
+      .then((response) => {
+        setComments(response);
+      })
+      .catch((err) => console.log(err));
   }, [article_id]);
 
   return (

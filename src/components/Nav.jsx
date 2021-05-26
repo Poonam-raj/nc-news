@@ -7,9 +7,11 @@ import { capitaliseString, setQuery } from '../utils/util';
 const Nav = ({ setQueryString }) => {
   const [topics, setTopics] = useState([]);
   useEffect(() => {
-    getTopics().then((response) => {
-      setTopics(response);
-    });
+    getTopics()
+      .then((response) => {
+        setTopics(response);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (

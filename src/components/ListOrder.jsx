@@ -1,9 +1,13 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { setQuery } from '../utils/util';
-// import Dropdown from 'react-bootstrap/Dropdown';
-// import { Link } from 'react-router-dom';
 
 export const ListOrder = ({ setQueryString }) => {
+  const sortBySlug = ['created_at', 'comment_count', 'votes'];
+  const sortByName = ['Date Created', 'Comment Count', 'Votes'];
+
+  const orderBySlug = ['asc', 'desc'];
+  const orderByName = ['Ascending', 'Descending'];
+
   return (
     <div className='ArticlesList__options'>
       <DropdownButton
@@ -12,27 +16,18 @@ export const ListOrder = ({ setQueryString }) => {
         className='ArticlesList__sort-by'
       >
         <ul>
-          <li
-            onClick={() => {
-              setQuery(setQueryString, 'sort_by', 'created_at');
-            }}
-          >
-            Date Created
-          </li>
-          <li
-            onClick={() => {
-              setQuery(setQueryString, 'sort_by', 'comment_count');
-            }}
-          >
-            Comment Count
-          </li>
-          <li
-            onClick={() => {
-              setQuery(setQueryString, 'sort_by', 'votes');
-            }}
-          >
-            Votes
-          </li>
+          {sortBySlug.map((item, i) => {
+            return (
+              <li
+                key={item}
+                onClick={() => {
+                  setQuery(setQueryString, 'sort_by', item);
+                }}
+              >
+                {sortByName[i]}
+              </li>
+            );
+          })}
         </ul>
       </DropdownButton>
       <DropdownButton
@@ -41,20 +36,18 @@ export const ListOrder = ({ setQueryString }) => {
         className='ArticlesList__order-by'
       >
         <ul>
-          <li
-            onClick={() => {
-              setQuery(setQueryString, 'order', 'asc');
-            }}
-          >
-            Ascending
-          </li>
-          <li
-            onClick={() => {
-              setQuery(setQueryString, 'order', 'desc');
-            }}
-          >
-            Descending
-          </li>
+          {orderBySlug.map((item, i) => {
+            return (
+              <li
+                key={item}
+                onClick={() => {
+                  setQuery(setQueryString, 'order', item);
+                }}
+              >
+                {orderByName[i]}
+              </li>
+            );
+          })}
         </ul>
       </DropdownButton>
     </div>

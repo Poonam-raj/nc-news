@@ -10,6 +10,7 @@ export const getTopics = async () => {
 };
 
 export const getArticles = async ({ topic, sort_by, order }) => {
+  console.log('api query ', topic, sort_by, order);
   const { data } = await newsApi.get('/articles', {
     params: {
       topic: topic,
@@ -31,9 +32,14 @@ export const getCommentsByID = async (articleID) => {
 };
 
 export const postComment = async (articleID, newComment) => {
-  const { data } = await axios.post(
-    `https://poonam-nc-news.herokuapp.com/api/articles/${articleID}/comments`,
+  const { data } = await newsApi.post(
+    `/articles/${articleID}/comments`,
     newComment
   );
   return data.comment;
+};
+
+export const patchArticleVotes = async (articleID, increment) => {
+  const { data } = await newsApi.patch(`/articles/${articleID}`, increment);
+  return data.article;
 };

@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { getArticles } from '../utils/api';
 import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
-import { capitaliseString } from '../utils/util';
+import { capitaliseString, setQuery } from '../utils/util';
 
 /*
   TODO
@@ -16,36 +16,38 @@ const ArticlesList = ({ queryString, setQueryString }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
+  // console.log('param check ', topic);
 
-  const checkTopic = () => {
-    if (topic) {
-      let capitalisedTopic = capitaliseString(topic);
-      return `${capitalisedTopic} Articles`;
-    } else return 'All Articles';
-  };
-
-  // if (topic) {
-  //   setQueryString((currQueryString) => {
-  //     const newQuery = { ...currQueryString };
-  //     newQuery.topic = topic;
-  //     return newQuery;
-  //   });
-  // }
+  /*is running in follwing order:
+  Line:
+  19
+  api(line 13)
+  useEffect
+  19
+  19
+*/
   useEffect(() => {
+    // if (topic) {
+    //   setQuery(setQueryString, 'topic', topic);
+    //   // console.log('amended query is', queryString);
+    // }
     getArticles(queryString)
       .then((response) => {
+        // console.log('loaded query', queryString);
         setArticles(response);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [queryString]);
+  }, [topic, queryString]);
 
   if (isLoading) return <p>Loading...</p>;
   return (
     <main>
-      <h2 className='ArticlesList__header'>{checkTopic()}</h2>
+      <h2 className='ArticlesList__header'>
+        {topic ? `${capitaliseString(topic)} Articles` : `All Articles`}
+      </h2>
       <ListOrder setQueryString={setQueryString} />
-      <div>
+      <>
         {articles.map((article) => {
           return (
             <div key={article.article_id} className='ArticlesList__article'>
@@ -67,7 +69,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
             </div>
           );
         })}
-      </div>
+      </>
     </main>
   );
 };

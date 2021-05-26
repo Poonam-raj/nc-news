@@ -18,8 +18,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 */
 function App() {
-  const [queryString, setQueryString] = useState({});
   const [user, setUser] = useState('cooljmessy');
+  const [queryString, setQueryString] = useState({});
   return (
     <div className='App'>
       <Header setQueryString={setQueryString} />

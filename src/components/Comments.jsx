@@ -29,11 +29,7 @@ const Comments = ({ article_id }) => {
     event.preventDefault();
     const newComm = { username: user, body: newComment };
     //POST only works when it's an existing user
-    postComment(article_id, newComm)
-      .then(() => {
-        console.log('comment added');
-      })
-      .catch((err) => console.log(err));
+    postComment(article_id, newComm).catch((err) => console.log(err));
     setNewComment('');
   };
 

@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as articlesAPI from '../utils/api';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { capitaliseString, setQuery } from '../utils/util';
 import { UserContext } from '../contexts/User';
+
 /*
   TODO
 
   - way of indicating if a topic or page is selected
+
+  if topic button is clicked, show the list
+  if a topic is clicked then default to original hidden state
   
 */
 
@@ -34,13 +37,16 @@ const Nav = ({ setQueryString }) => {
       >
         Home
       </Link>
-      <DropdownButton id='dropdown-basic-button' title='Topics'>
-        <ul>
+      <button className='dropdown'>
+        {' '}
+        Topics
+        <ul className='dropdown-content'>
           {topics.map((topic) => {
             const capitalisedSlug = capitaliseString(topic.slug);
             return (
               <Link to={`/topics/${topic.slug}`} key={topic.slug}>
                 <li
+                  className='ArticlesList__dropdown__item'
                   onClick={() => {
                     setQuery(setQueryString, 'topic', topic.slug);
                   }}
@@ -51,7 +57,7 @@ const Nav = ({ setQueryString }) => {
             );
           })}
         </ul>
-      </DropdownButton>
+      </button>
       <p>{user}</p>
     </nav>
   );

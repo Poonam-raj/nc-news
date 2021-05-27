@@ -58,8 +58,11 @@ li {
   justify-content: space-around;
 }
 
-.ArticlesList__sort-by {
-  margin: 0;
+.ArticlesList__dropdown__item {
+  padding-left: 10px;
+}
+.ArticlesList__dropdown__item:active {
+  background-color: #adebe0;
 }
 .ArticlesList__options__header,
 .ArticlesList__article__details p {
@@ -150,4 +153,23 @@ li {
   font-size: 14px;
   margin: 15px;
   text-align: left;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

@@ -1,4 +1,3 @@
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { setQuery } from '../utils/util';
 
 /*
@@ -17,15 +16,13 @@ export const ListOrder = ({ setQueryString }) => {
 
   return (
     <div className='ArticlesList__options'>
-      <DropdownButton
-        id='dropdown-basic-button'
-        title='Sort by'
-        className='ArticlesList__sort-by'
-      >
-        <ul>
+      <button className='dropdown'>
+        Sort By
+        <ul className='dropdown-content'>
           {sortBySlug.map((item, i) => {
             return (
               <li
+                className='ArticlesList__dropdown__item'
                 key={item}
                 onClick={() => {
                   setQuery(setQueryString, 'sort_by', item);
@@ -36,16 +33,14 @@ export const ListOrder = ({ setQueryString }) => {
             );
           })}
         </ul>
-      </DropdownButton>
-      <DropdownButton
-        id='dropdown-basic-button'
-        title='Order by'
-        className='ArticlesList__order-by'
-      >
-        <ul>
+      </button>
+      <button className='dropdown'>
+        Order by
+        <ul className='dropdown-content'>
           {orderBySlug.map((item, i) => {
             return (
               <li
+                className='ArticlesList__dropdown__item'
                 key={item}
                 onClick={() => {
                   setQuery(setQueryString, 'order', item);
@@ -56,7 +51,7 @@ export const ListOrder = ({ setQueryString }) => {
             );
           })}
         </ul>
-      </DropdownButton>
+      </button>
     </div>
   );
 };

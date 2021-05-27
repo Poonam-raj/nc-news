@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import * as articlesAPI from '../utils/api';
 import Comments from './Comments';
+import { Link } from 'react-router-dom';
 
 // - Display date created better
 
-const Article = () => {
+const Article = ({ comments, setComments }) => {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
@@ -42,34 +43,53 @@ const Article = () => {
   return (
     <main className='Article__container'>
       <div className='Article__margin'>
-        <h2>{article.title}</h2>
-        <p className='Article__topics'>Topic: {article.topic}</p>
-        <div className='Article__details'>
-          <p>Author: {article.author}</p>
-          <p>Date: {article.created_at}</p>
-          <p>{article.votes} votes</p>
-          <p>{article.comment_count} comments</p>
+        <div className='Article__title-topic'>
+          <h2>{article.title}</h2>
+          <Link to={`/topics/${article.topic}`}>
+            <p className='Article__topic'>Topic: {article.topic}</p>
+          </Link>
         </div>
-        {/* VOTE BUTTONS */}
-        <button
-          onClick={() => {
-            incrementCount(1);
-          }}
-        >
-          ⬆{' '}
-        </button>
-        <p>{count}</p>
-        <button
-          onClick={() => {
-            incrementCount(-1);
-          }}
-        >
-          ⬇{' '}
-        </button>
-        <article className='Article__body'>{article.body}</article>
+        <div className='Article__details'>
+          <p>
+            Author: <b>{article.author}</b>
+          </p>
+          <p>Date: {article.created_at}</p>
+
+          <p>{article.votes} votes</p>
+          <p>{comments.length} comments</p>
+        </div>
+        <div className='Article__body-vote-container'>
+          {/* VOTE BUTTONS */}
+          <div className='Article__voting-container'>
+            <button
+              onClick={() => {
+                incrementCount(1);
+              }}
+            >
+              ⬆{' '}
+            </button>
+            <p>{count} 🖤 </p>
+            <button
+              onClick={() => {
+                incrementCount(-1);
+              }}
+            >
+              ⬇{' '}
+            </button>
+          </div>
+          <div className='Article__body'>
+            <article className='Article__body__inner-container'>
+              {article.body}
+            </article>
+          </div>
+        </div>
         <hr />
-        <h2>Comments ({article.comment_count})</h2>
-        <Comments article_id={article_id} />
+        <h2>Comments ({comments.length})</h2>
+        <Comments
+          article_id={article_id}
+          comments={comments}
+          setComments={setComments}
+        />
       </div>
     </main>
   );

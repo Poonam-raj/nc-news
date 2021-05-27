@@ -19,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [user, setUser] = useState('cooljmessy');
   const [queryString, setQueryString] = useState({});
+  const [comments, setComments] = useState([]);
   return (
     <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
@@ -32,7 +33,7 @@ function App() {
             />
           </Route>
           <Route exact path='/:author_id/:article_id'>
-            <Article />
+            <Article comments={comments} setComments={setComments} />
           </Route>{' '}
           <Route exact path='/'>
             <ArticlesList

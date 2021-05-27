@@ -22,7 +22,7 @@ export const ListOrder = ({ setQueryString }) => {
           {sortBySlug.map((item, i) => {
             return (
               <li
-                className='ArticlesList__dropdown__item'
+                className='dropdown__item'
                 key={item}
                 onClick={() => {
                   setQuery(setQueryString, 'sort_by', item);
@@ -40,7 +40,7 @@ export const ListOrder = ({ setQueryString }) => {
           {orderBySlug.map((item, i) => {
             return (
               <li
-                className='ArticlesList__dropdown__item'
+                className='dropdown__item'
                 key={item}
                 onClick={() => {
                   setQuery(setQueryString, 'order', item);

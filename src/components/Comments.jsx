@@ -42,8 +42,8 @@ const Comments = ({ article_id }) => {
 
   if (isLoading) return <p>Loading...</p>;
   return (
-    <section>
-      <form className='Comments__form' onSubmit={handleSubmit}>
+    <section className='Comments__container'>
+      <form onSubmit={handleSubmit}>
         <label htmlFor='newComment'>Submit a comment as {user} </label>
         <input
           required
@@ -57,22 +57,18 @@ const Comments = ({ article_id }) => {
 
         <button type='submit'>Post Comment</button>
       </form>
-      <ul>
-        {comments.map((comment) => {
-          return (
-            <li key={comment.comment_id}>
-              <div className='Comments'>
-                <div className='Comments__details'>
-                  <h3 className='Comments__author'>{comment.author}</h3>
-                  <p className='Comments__votes'>{comment.votes} votes</p>
-                </div>
 
-                <p className='Comments__body'>{comment.body}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      {comments.map((comment) => {
+        return (
+          <li className='Comments__list-item' key={comment.comment_id}>
+            <div className='Comments__details'>
+              <h3 className='Comments__author'>{comment.author}</h3>
+              <p className='Comments__votes'>{comment.votes} votes</p>
+            </div>
+            <p className='Comments__body'>{comment.body}</p>
+          </li>
+        );
+      })}
     </section>
   );
 };

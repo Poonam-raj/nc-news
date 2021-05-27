@@ -21,8 +21,8 @@ function App() {
   const [queryString, setQueryString] = useState({});
   return (
     <div className='App'>
-      <Header setQueryString={setQueryString} />
       <UserContext.Provider value={{ user, setUser }}>
+        <Header setQueryString={setQueryString} />
         <Nav setQueryString={setQueryString} />
         <Switch>
           <Route exact path='/topics/:topic'>

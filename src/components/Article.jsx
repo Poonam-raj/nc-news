@@ -47,8 +47,6 @@ const Article = () => {
         <div className='Article__details'>
           <p>Author: {article.author}</p>
           <p>Date: {article.created_at}</p>
-        </div>
-        <div className='Article__stats'>
           <p>{article.votes} votes</p>
           <p>{article.comment_count} comments</p>
         </div>

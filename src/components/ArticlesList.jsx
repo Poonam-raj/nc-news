@@ -42,7 +42,9 @@ const ArticlesList = ({ queryString, setQueryString }) => {
           return (
             <div key={article.article_id} className='ArticlesList__article'>
               <div className='ArticlesList__article__details'>
-                <p>{article.author}</p>
+                <p>
+                  <b>{article.author}</b>
+                </p>
                 <p>{article.created_at}</p>
               </div>
 
@@ -53,7 +55,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
                 <h3>{article.title}</h3>
               </Link>
               <div className='ArticlesList__article__stats'>
-                <p>{article.votes} votes 💟 </p>
+                <p>{article.votes} votes 🖤</p>
                 <p>{article.comment_count} comments 💬 </p>
               </div>
             </div>

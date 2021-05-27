@@ -8,8 +8,7 @@ import { UserContext } from '../contexts/User';
 
 */
 
-const Comments = ({ article_id }) => {
-  const [comments, setComments] = useState([]);
+const Comments = ({ article_id, comments, setComments }) => {
   const [newComment, setNewComment] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -43,8 +42,10 @@ const Comments = ({ article_id }) => {
   if (isLoading) return <p>Loading...</p>;
   return (
     <section className='Comments__container'>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='newComment'>Submit a comment as {user} </label>
+      <form onSubmit={handleSubmit} className='Comments__form'>
+        <label htmlFor='newComment'>
+          Submit a comment as <b>{user}</b>{' '}
+        </label>
         <input
           required
           type='text'
@@ -61,11 +62,13 @@ const Comments = ({ article_id }) => {
       {comments.map((comment) => {
         return (
           <li className='Comments__list-item' key={comment.comment_id}>
-            <div className='Comments__details'>
-              <h3 className='Comments__author'>{comment.author}</h3>
-              <p className='Comments__votes'>{comment.votes} votes</p>
+            <div className='Comments__list-item__inner-container'>
+              <div className='Comments__details'>
+                <h3 className='Comments__author'>{comment.author}</h3>
+                <p className='Comments__votes'>{comment.votes} votes</p>
+              </div>
+              <p className='Comments__body'>{comment.body}</p>
             </div>
-            <p className='Comments__body'>{comment.body}</p>
           </li>
         );
       })}

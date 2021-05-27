@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 /*
   TODO
 
-  - Articles need to remain filtered to the topic when the page is refreshed (path stays topic-specific)
   - dropdowns need to close when clicked
   - tidy components so states are shared more concisely
   

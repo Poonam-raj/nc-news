@@ -10,7 +10,6 @@ export const getTopics = async () => {
 };
 
 export const getArticles = async ({ topic, sort_by, order }) => {
-  console.log('api query ', topic, sort_by, order);
   const { data } = await newsApi.get('/articles', {
     params: {
       topic: topic,

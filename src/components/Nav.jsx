@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTopics } from '../utils/api';
+import * as articlesAPI from '../utils/api';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { capitaliseString, setQuery } from '../utils/util';
 import { UserContext } from '../contexts/User';
@@ -16,7 +16,8 @@ const Nav = ({ setQueryString }) => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    getTopics()
+    articlesAPI
+      .getTopics()
       .then((response) => {
         setTopics(response);
       })

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getArticleByID, patchArticleVotes } from '../utils/api';
+import * as articlesAPI from '../utils/api';
 import Comments from './Comments';
+
+// - Display date created better
 
 const Article = () => {
   const { article_id } = useParams();
@@ -10,7 +12,8 @@ const Article = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    getArticleByID(article_id)
+    articlesAPI
+      .getArticleByID(article_id)
       .then((response) => {
         setArticle(response);
         setIsLoading(false);
@@ -25,7 +28,8 @@ const Article = () => {
     setCount((currCount) => {
       return currCount + increment;
     });
-    patchArticleVotes(article_id, { inc_votes: increment })
+    articlesAPI
+      .patchArticleVotes(article_id, { inc_votes: increment })
       .then((response) => {
         setArticle(response);
       })

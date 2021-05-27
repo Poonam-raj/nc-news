@@ -7,8 +7,6 @@ import { UserContext } from '../contexts/User';
 /*
   TODO
 
-  - way of indicating if a topic or page is selected
-
   if topic button is clicked, show the list
   if a topic is clicked then default to original hidden state
   

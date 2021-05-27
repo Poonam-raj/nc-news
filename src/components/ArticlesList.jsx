@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getArticles } from '../utils/api';
+import * as articlesAPI from '../utils/api';
 import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
 import { capitaliseString, setQuery } from '../utils/util';
 
 /*
   TODO
-
-  - keep topic filter upon refresh
+  - Display date created better
   
 */
 
@@ -16,29 +15,20 @@ const ArticlesList = ({ queryString, setQueryString }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
-  // console.log('param check ', topic);
 
-  /*is running in follwing order:
-  Line:
-  19
-  api(line 13)
-  useEffect
-  19
-  19
-*/
   useEffect(() => {
-    // if (topic) {
-    //   setQuery(setQueryString, 'topic', topic);
-    //   // console.log('amended query is', queryString);
-    // }
-    getArticles(queryString)
+    setQuery(setQueryString, 'topic', topic, queryString);
+  }, []);
+
+  useEffect(() => {
+    articlesAPI
+      .getArticles(queryString)
       .then((response) => {
-        // console.log('loaded query', queryString);
         setArticles(response);
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [topic, queryString]);
+  }, [topic, setQueryString, queryString]);
 
   if (isLoading) return <p>Loading...</p>;
   return (

@@ -30,6 +30,7 @@ const Nav = ({ setQueryString }) => {
   return (
     <nav className='Nav'>
       <Link
+        className='Nav__item'
         to={'/'}
         onClick={() => {
           setQueryString({});
@@ -37,7 +38,7 @@ const Nav = ({ setQueryString }) => {
       >
         Home
       </Link>
-      <button className='dropdown'>
+      <button className='Nav__dropdown dropdown Nav__item'>
         {' '}
         Topics
         <ul className='dropdown-content'>
@@ -46,7 +47,7 @@ const Nav = ({ setQueryString }) => {
             return (
               <Link to={`/topics/${topic.slug}`} key={topic.slug}>
                 <li
-                  className='ArticlesList__dropdown__item'
+                  className='dropdown__item'
                   onClick={() => {
                     setQuery(setQueryString, 'topic', topic.slug);
                   }}
@@ -58,7 +59,22 @@ const Nav = ({ setQueryString }) => {
           })}
         </ul>
       </button>
-      <p>{user}</p>
+      {topics.map((topic) => {
+        const capitalisedSlug = capitaliseString(topic.slug);
+        return (
+          <Link
+            to={`/topics/${topic.slug}`}
+            key={topic.slug}
+            className='Nav__topic Nav__item'
+            onClick={() => {
+              setQuery(setQueryString, 'topic', topic.slug);
+            }}
+          >
+            {capitalisedSlug}
+          </Link>
+        );
+      })}
+      <p className='Nav__user Nav__item'>{user}</p>
     </nav>
   );
 };

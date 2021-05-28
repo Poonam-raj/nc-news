@@ -3,14 +3,24 @@ import { useParams } from 'react-router';
 import * as articlesAPI from '../utils/api';
 import Comments from './Comments';
 import { Link } from 'react-router-dom';
+import { findDate } from '../utils/util';
 
-// - Display date created better
+/* TODO
 
-const Article = ({ comments, setComments }) => {
+- max one vote in either direction per page load
+- error handle when topic is bad - does it need to go straight to all topics or give an error page(?)
+- errro handle when incorrect article ID is put in - like a lil P tag with an 'oops' statement - resuable?
+- like an error component which served when an error is caught (using state)
+- extract vote into its own component!
+
+*/
+
+const Article = () => {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
   const [count, setCount] = useState(0);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     articlesAPI
@@ -53,7 +63,7 @@ const Article = ({ comments, setComments }) => {
           <p>
             Author: <b>{article.author}</b>
           </p>
-          <p>Date: {article.created_at}</p>
+          <p>{findDate(article)}</p>
 
           <p>{article.votes} votes</p>
           <p>{comments.length} comments</p>

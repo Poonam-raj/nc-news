@@ -13,13 +13,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
   - dropdowns need to close when clicked
   - tidy components so states are shared more concisely
-  
+  - Add footer with link to github repo
+  - re-read classes from FUN notes
+  - Bad URL and bad article ID error handlind - needs a 404 page
+- reusable voting function - extract out
+- separate out loading into its own component?
+  - make a CommentCard, ArticleCard componene tanywhere there is ampping to tidy files
 
 */
 function App() {
   const [user, setUser] = useState('cooljmessy');
   const [queryString, setQueryString] = useState({});
-  const [comments, setComments] = useState([]);
+
   return (
     <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
@@ -33,7 +38,7 @@ function App() {
             />
           </Route>
           <Route exact path='/:author_id/:article_id'>
-            <Article comments={comments} setComments={setComments} />
+            <Article />
           </Route>{' '}
           <Route exact path='/'>
             <ArticlesList

@@ -24,6 +24,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const [user, setUser] = useState('cooljmessy');
   const [queryString, setQueryString] = useState({});
+  const [voteTally, setVoteTally] = useState(0);
 
   return (
     <div className='App'>
@@ -35,15 +36,19 @@ function App() {
             <ArticlesList
               queryString={queryString}
               setQueryString={setQueryString}
+              voteTally={voteTally}
+              setVoteTally={setVoteTally}
             />
           </Route>
           <Route exact path='/:author_id/:article_id'>
-            <Article />
+            <Article voteTally={voteTally} setVoteTally={setVoteTally} />
           </Route>{' '}
           <Route exact path='/'>
             <ArticlesList
               queryString={queryString}
               setQueryString={setQueryString}
+              voteTally={voteTally}
+              setVoteTally={setVoteTally}
             />{' '}
           </Route>{' '}
         </Switch>

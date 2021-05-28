@@ -9,6 +9,7 @@ import * as articlesAPI from '../utils/api';
 const ArticleCards = ({ articleID, voteTally, setVoteTally }) => {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -22,12 +23,14 @@ const ArticleCards = ({ articleID, voteTally, setVoteTally }) => {
       })
       .catch((err) => {
         console.log(err);
+        setIsError(true);
       });
     return () => {
       isMounted = false;
     };
   }, [articleID]);
 
+  if (isError) return <p>Oops something went wrong</p>;
   if (isLoading) return <p>Loading...</p>;
   return (
     <div key={article.article_id} className='ArticlesList__article'>

@@ -14,6 +14,7 @@ const ArticlesList = ({
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     utils.setQuery(setQueryString, 'topic', topic);
@@ -26,9 +27,13 @@ const ArticlesList = ({
         setArticles(response);
         setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+      });
   }, [setQueryString, queryString]);
 
+  if (isError) return <p>Oops something went wrong</p>;
   if (isLoading) return <p>Loading...</p>;
   return (
     <main>

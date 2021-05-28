@@ -21,6 +21,7 @@ const Article = ({ voteTally, setVoteTally }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
   const [comments, setComments] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     articlesAPI
@@ -29,10 +30,15 @@ const Article = ({ voteTally, setVoteTally }) => {
         setArticle(response);
         setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+      });
   }, [article_id, article.votes]);
 
+  if (isError) return <p>Oops something went wrong</p>;
   if (isLoading) return <p>Loading...</p>;
+
   return (
     <main className='Article__container'>
       <div className='Article__margin'>

@@ -14,11 +14,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   - dropdowns need to close when clicked
   - tidy components so states are shared more concisely
   - Add footer with link to github repo
-  - re-read classes from FUN notes
   - Bad URL and bad article ID error handlind - needs a 404 page
-- reusable voting function - extract out
 - separate out loading into its own component?
-  - make a CommentCard, ArticleCard componene tanywhere there is ampping to tidy files
+  - error page if the page path is random like /dog or something
 
 */
 function App() {

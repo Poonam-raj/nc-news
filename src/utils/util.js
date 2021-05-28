@@ -12,6 +12,6 @@ export const setQuery = (setState, query, queryStr) => {
 };
 
 export const findDate = (article) => {
-  let [date, time] = article.created_at.split('T');
+  const [date] = article.created_at.split('T');
   return date.split('-').reverse().join('-');
 };

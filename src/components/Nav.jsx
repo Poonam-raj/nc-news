@@ -6,9 +6,7 @@ import { UserContext } from '../contexts/User';
 
 /*
   TODO
-
-  if topic button is clicked, show the list
-  if a topic is clicked then default to original hidden state
+Hide dropdown when topic is selected
   
 */
 

@@ -3,11 +3,13 @@ import * as articlesAPI from '../utils/api';
 import { UserContext } from '../contexts/User';
 /*
   TODO
+ - maybe remove votes in comments if i can't do comment voting
 
+  Requires further API functionality:
  - voting on comments
  - max one vote in either direction per page load
  - comment deletion (only available when it's user's comment)
- - maybe remove votes in comments if i can't do comment voting
+
 
 */
 
@@ -25,7 +27,7 @@ const Comments = ({ article_id, comments, setComments }) => {
       })
       .catch((err) => console.log(err));
     return () => {};
-  }, [article_id]);
+  }, [article_id, setComments]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -68,7 +70,7 @@ const Comments = ({ article_id, comments, setComments }) => {
             <div className='Comments__list-item__inner-container'>
               <div className='Comments__details'>
                 <h3 className='Comments__author'>{comment.author}</h3>
-                <p className='Comments__votes'>{comment.votes} votes</p>
+                {/* <p className='Comments__votes'>{comment.votes} votes</p> */}
               </div>
               <p className='Comments__body'>{comment.body}</p>
             </div>

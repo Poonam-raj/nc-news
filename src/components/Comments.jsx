@@ -5,6 +5,9 @@ import { UserContext } from '../contexts/User';
   TODO
 
  - voting on comments
+ - max one vote in either direction per page load
+ - comment deletion (only available when it's user's comment)
+ - maybe remove votes in comments if i can't do comment voting
 
 */
 

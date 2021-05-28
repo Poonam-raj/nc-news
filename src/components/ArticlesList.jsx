@@ -3,11 +3,12 @@ import { useParams } from 'react-router';
 import * as articlesAPI from '../utils/api';
 import { ListOrder } from './ListOrder';
 import { Link } from 'react-router-dom';
-import { capitaliseString, setQuery } from '../utils/util';
+import { capitaliseString, setQuery, findDate } from '../utils/util';
 
 /*
   TODO
-  - Display date created better
+  - put voting functionality into article cards
+  - max one vote in either direction per page load
   
 */
 
@@ -17,7 +18,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
   const { topic } = useParams();
 
   useEffect(() => {
-    setQuery(setQueryString, 'topic', topic, queryString);
+    setQuery(setQueryString, 'topic', topic);
   }, []);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
         {topic ? `${capitaliseString(topic)} Articles` : `All Articles`}
       </h2>
       <ListOrder setQueryString={setQueryString} />
-      <>
+      <div className='ArticlesList__container'>
         {articles.map((article) => {
           return (
             <div key={article.article_id} className='ArticlesList__article'>
@@ -45,7 +46,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
                 <p>
                   <b>{article.author}</b>
                 </p>
-                <p>{article.created_at}</p>
+                <p>{findDate(article)}</p>
               </div>
 
               <Link
@@ -61,7 +62,7 @@ const ArticlesList = ({ queryString, setQueryString }) => {
             </div>
           );
         })}
-      </>
+      </div>
     </main>
   );
 };

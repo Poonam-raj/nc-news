@@ -10,3 +10,8 @@ export const setQuery = (setState, query, queryStr) => {
     return newQuery;
   });
 };
+
+export const findDate = (article) => {
+  let [date, time] = article.created_at.split('T');
+  return date.split('-').reverse().join('-');
+};

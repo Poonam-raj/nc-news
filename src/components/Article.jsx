@@ -4,22 +4,22 @@ import * as articlesAPI from '../utils/api';
 import Comments from './Comments';
 import { Link } from 'react-router-dom';
 import { findDate } from '../utils/util';
+import Votes from './Votes';
 
 /* TODO
 
-- max one vote in either direction per page load
+
 - error handle when topic is bad - does it need to go straight to all topics or give an error page(?)
 - errro handle when incorrect article ID is put in - like a lil P tag with an 'oops' statement - resuable?
 - like an error component which served when an error is caught (using state)
-- extract vote into its own component!
+
 
 */
 
-const Article = () => {
+const Article = ({ voteTally, setVoteTally }) => {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState([]);
-  const [count, setCount] = useState(0);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -29,25 +29,8 @@ const Article = () => {
         setArticle(response);
         setIsLoading(false);
       })
-
       .catch((err) => console.log(err));
-
-    setCount(article.votes);
   }, [article_id, article.votes]);
-
-  const incrementCount = (increment) => {
-    setCount((currCount) => {
-      return currCount + increment;
-    });
-    articlesAPI
-      .patchArticleVotes(article_id, { inc_votes: increment })
-      .then((response) => {
-        setArticle(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   if (isLoading) return <p>Loading...</p>;
   return (
@@ -69,24 +52,12 @@ const Article = () => {
           <p>{comments.length} comments</p>
         </div>
         <div className='Article__body-vote-container'>
-          {/* VOTE BUTTONS */}
-          <div className='Article__voting-container'>
-            <button
-              onClick={() => {
-                incrementCount(1);
-              }}
-            >
-              ⬆{' '}
-            </button>
-            <p>{count} 🖤 </p>
-            <button
-              onClick={() => {
-                incrementCount(-1);
-              }}
-            >
-              ⬇{' '}
-            </button>
-          </div>
+          <Votes
+            article={article}
+            setArticle={setArticle}
+            voteTally={voteTally}
+            setVoteTally={setVoteTally}
+          />
           <div className='Article__body'>
             <article className='Article__body__inner-container'>
               {article.body}

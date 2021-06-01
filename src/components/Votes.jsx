@@ -33,7 +33,7 @@ const Votes = ({ article, setArticle, voteTally, setVoteTally }) => {
   return (
     <div className='Votes'>
       <button
-        disabled={voteTally >= 1}
+        // disabled={voteTally >= 1}
         onClick={() => {
           incrementCount(1);
         }}
@@ -42,7 +42,7 @@ const Votes = ({ article, setArticle, voteTally, setVoteTally }) => {
       </button>
       <p>{count} 🖤 </p>
       <button
-        disabled={voteTally <= -1}
+        // disabled={voteTally <= -1}
         onClick={() => {
           incrementCount(-1);
         }}

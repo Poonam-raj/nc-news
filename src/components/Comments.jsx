@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
 import * as articlesAPI from '../utils/api';
-
 import CommentCards from './CommentCards';
 import CommentForm from './CommentForm';
+import Loading from './Loading';
 /*
   TODO
   Requires further API functionality:
  - voting on comments
  - max one vote in either direction per page load
  - comment deletion (only available when it's user's comment)
-
 
 */
 
@@ -30,8 +30,8 @@ const Comments = ({ article_id, comments, setComments }) => {
       });
   }, [article_id, setComments]);
 
-  if (isError) return <p>Oops something went wrong</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <Redirect to='/404' />;
+  if (isLoading) return <Loading />;
 
   return (
     <section className='Comments__container'>

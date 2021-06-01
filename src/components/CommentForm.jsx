@@ -17,7 +17,7 @@ const CommentForm = ({ article_id, setComments }) => {
           return [response, ...currComments];
         });
       })
-      .catch((err) => console.log(err)); //way of indicating error if submission failed
+      .catch((err) => <p>{`Error: ${err}`}</p>); //way of indicating error if submission failed
     setNewComment('');
   };
 

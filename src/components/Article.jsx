@@ -1,20 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 import * as articlesAPI from '../utils/api';
 import Comments from './Comments';
 import { Link } from 'react-router-dom';
 import { findDate } from '../utils/util';
 import Votes from './Votes';
-
-/* TODO
-
-
-- error handle when topic is bad - does it need to go straight to all topics or give an error page(?)
-- errro handle when incorrect article ID is put in - like a lil P tag with an 'oops' statement - resuable?
-- like an error component which served when an error is caught (using state)
-
-
-*/
+import Loading from './Loading';
 
 const Article = ({ voteTally, setVoteTally }) => {
   const { article_id } = useParams();
@@ -36,9 +27,8 @@ const Article = ({ voteTally, setVoteTally }) => {
       });
   }, [article_id, article.votes]);
 
-  if (isError) return <p>Oops something went wrong</p>;
-  if (isLoading) return <p>Loading...</p>;
-
+  if (isError) return <Redirect to='/404' />;
+  if (isLoading) return <Loading />;
   return (
     <main className='Article__container'>
       <div className='Article__margin'>

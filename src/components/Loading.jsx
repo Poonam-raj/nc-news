@@ -1,4 +1,4 @@
-const Loading = (isLoading) => {
+const Loading = () => {
   return <p>Loading...</p>;
 };
 

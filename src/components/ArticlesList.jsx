@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 import * as articlesAPI from '../utils/api';
 import { ListOrder } from './ListOrder';
 import * as utils from '../utils/util';
 import ArticleCards from './ArticleCards';
+import Loading from './Loading';
 
 const ArticlesList = ({
   queryString,
@@ -33,8 +34,8 @@ const ArticlesList = ({
       });
   }, [setQueryString, queryString]);
 
-  if (isError) return <p>Oops something went wrong</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <Redirect to='/404' />;
+  if (isLoading) return <Loading />;
   return (
     <main>
       <h2 className='ArticlesList__header'>

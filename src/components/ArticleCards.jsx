@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Votes from './Votes';
 import * as utils from '../utils/util';
 import { useEffect, useState } from 'react';
 import * as articlesAPI from '../utils/api';
+import Loading from './Loading';
 
 // split loading into a component
 
@@ -30,8 +31,8 @@ const ArticleCards = ({ articleID, voteTally, setVoteTally }) => {
     };
   }, [articleID]);
 
-  if (isError) return <p>Oops something went wrong</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <Redirect to='/404' />;
+  if (isLoading) return <Loading />;
   return (
     <div key={article.article_id} className='ArticlesList__article'>
       <div className='ArticlesList__article__details'>
@@ -42,7 +43,7 @@ const ArticleCards = ({ articleID, voteTally, setVoteTally }) => {
       </div>
 
       <Link
-        to={`/${article.author}/${article.article_id}`}
+        to={`/articles/${article.article_id}`}
         className='ArticlesList__article__link'
       >
         <h3>{article.title}</h3>

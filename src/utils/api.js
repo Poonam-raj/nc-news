@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const newsApi = axios.create({
-  baseURL: 'https://poonam-nc-news.herokuapp.com/api'
+  baseURL: 'https://nc-news-m9jy.onrender.com/api',
 });
 
 export const getTopics = async () => {
@@ -14,8 +14,8 @@ export const getArticles = async ({ topic, sort_by, order }) => {
     params: {
       topic: topic,
       sort_by: sort_by,
-      order: order
-    }
+      order: order,
+    },
   });
   return data.articles;
 };
@@ -33,7 +33,7 @@ export const getCommentsByID = async (articleID) => {
 export const postComment = async (articleID, newComment) => {
   const { data } = await newsApi.post(
     `/articles/${articleID}/comments`,
-    newComment
+    newComment,
   );
   return data.comment;
 };

@@ -7,7 +7,7 @@ A React app with CRUD functionality, enabling users to access a range of article
 ## Hosted App
 
 NC News is hosted on Netlify and can be found here: https://poonams-nc-news.netlify.app/ <br>The repo for this app can be found on github: https://github.com/Poonam-raj/nc-news<br><br>
-This app is built off the NC News back end API (https://poonam-nc-news.herokuapp.com/api).<BR> Access the back end repo here: https://github.com/Poonam-raj/nc-news-api.<br><br>
+This app is built off the NC News back end API (https://nc-news-m9jy.onrender.com/api/).<BR> Access the back end repo here: https://github.com/Poonam-raj/nc-news-api.<br><br>
 
 ## Set Up the Repo
 
@@ -27,7 +27,7 @@ In terminal:
 cd nc-news
 ```
 
-### 2. Install Dependencies
+### 3. Install Dependencies
 
 In terminal:
 
@@ -35,7 +35,7 @@ In terminal:
 npm install
 ```
 
-### 3. Run Start Script
+### 4. Run Start Script
 
 Run the React app:
 
@@ -43,6 +43,30 @@ Run the React app:
 npm run start
 ```
 
-### 4. Check Node Verion
+### 5. Check Node Verion
 
 The minimum version of Node required is <b>v15.6.0<b>
+
+## Deploying updated code to production URL
+
+### 1. Commit code as normal
+
+### 2. Create an updated build of your code
+
+    ```bash
+    npm run build
+    ```
+
+### 3. Deploy to a draft url
+
+    ```bash
+    netlify deploy
+    ```
+
+### 4. Deploy to production url
+
+```bash
+netlify deploy --prod
+```
+
+_NB_: you may need to install the netlify cli (`npm install netlify-cli -g`)
